@@ -36,20 +36,16 @@ public class AddTwoNumbers {
 
     public static ListNode addNumbers(ListNode l1, ListNode l2) {
 
-        // 2->4->3
-        // 5->6->4
-
         ListNode res = null;
-
         int carry = 0;
 
         while (l1 != null || l2 != null) {
-
 
             int sum = (l1 != null ? l1.val : 0) + (l2 != null ? l2.val : 0) + carry;
 
             // calculate carry
             carry = sum/10;
+            // calculate val
             int val = sum%10;
 
             if (res == null) {
@@ -57,7 +53,7 @@ public class AddTwoNumbers {
             }
             else {
                 ListNode tmp = res;
-                while(tmp.next != null) {
+                while(tmp.next != null) { // Reach last node
                     tmp = tmp.next;
                 }
                 tmp.next = new ListNode(val);
@@ -66,10 +62,9 @@ public class AddTwoNumbers {
             l1 = l1 != null ? l1.next : null;
             l2 = l2 != null ? l2.next : null;
         }
-
-        if (carry > 0) {
+        if (carry > 0) { // Handle carry case
             ListNode tmp = res;
-            while(tmp.next != null) {
+            while(tmp.next != null) { // Reach last node
                 tmp = tmp.next;
             }
             tmp.next = new ListNode(carry);
